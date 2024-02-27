@@ -2,12 +2,14 @@ import Container from "@/components/Common/Container";
 import React from "react";
 import AddCourses from "./AddCourses";
 import AdminCoursesTable from "./AdminCoursesTable";
-import { Course } from "@prisma/client";
-import { getCoursesData } from "@/lib/data/getCourses";
+
+
 import AddStudentToCourse from "./AddStudentToCourse";
+import { getCourses } from "@/lib/data/getCourses";
+import { Course } from "@/types";
 
 const CoursesPage = async () => {
-  const courses = await getCoursesData();
+  const courses = await getCourses();
   return (
     <>
       <Container>

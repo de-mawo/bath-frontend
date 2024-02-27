@@ -1,11 +1,10 @@
-import { PiBellRingingDuotone } from "react-icons/pi";
+
+
 import { BiSolidChevronDown } from "react-icons/bi";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -13,13 +12,17 @@ import SideBarDrawer from "./SideBarDrawer";
 import Link from "next/link";
 import DarkLightToggler from "./DarkLightToggler";
 import LogOutBtn from "./LogOutBtn";
-import { User } from "@prisma/client";
+import { UserSession } from "@/types";
 
 type Props = {
-  user: User
-}
+  user: UserSession;
+};
 
-const Header = ({user}: Props) => {
+const Header = ({ user }: Props) => {
+
+
+
+  
   return (
     <header
       className="
@@ -32,7 +35,7 @@ const Header = ({user}: Props) => {
         <div className="flex flex-wrap justify-between items-center mx-8 ">
           {/* LEFT SIDE */}
           <div className="flex justify-start items-center">
-            <SideBarDrawer user={user}  />
+            <SideBarDrawer user={user} />
           </div>
 
           {/* RIGHT SIDE  */}
@@ -42,7 +45,10 @@ const Header = ({user}: Props) => {
               <PiBellRingingDuotone size={28} />
             </button> */}
             <Avatar>
-              <AvatarImage src={user?.image as string} alt={user?.name as string} />
+              <AvatarImage
+                src={user?.image as string}
+                alt={user?.name}
+              />
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
 

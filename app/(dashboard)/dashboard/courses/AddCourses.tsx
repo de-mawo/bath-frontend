@@ -92,10 +92,14 @@ const AddCourses = () => {
         tags,
       };
 
-      const res = await fetch("/api/course", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/course`, {
         method: "POST",
         body: JSON.stringify(formattedValues),
+        credentials: "include",
       });
+
+      console.log(formattedValues);
+      
 
       if (res.ok) {
         toast.success("Course Added", { duration: 4000 });
@@ -104,7 +108,7 @@ const AddCourses = () => {
         setTagInput("");
         router.refresh();
       } else {
-        const errorMessage = await res.text();
+        const errorMessage = await res.json();
 
         toast.error(`An error occured ${errorMessage}`, { duration: 6000 });
       }

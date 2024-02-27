@@ -9,8 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Course } from "@/types";
 
-import { Course } from "@prisma/client";
+
 
 
 type Props = {
@@ -32,7 +33,7 @@ const AdminCoursesTable = ({ courses }: Props) => {
             </TableRow>
           </TableHeader>
           <TableBody className="whitespace-nowrap">
-            {courses.map((course) => (
+            {courses?.map((course) => (
               <TableRow key={course.id}>
                 <TableCell className="font-medium">
                   {" "}
