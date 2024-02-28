@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { Project } from "@prisma/client";
+import { Project } from "@/types";
+
 
 type Props = {
   project: Project;
@@ -10,13 +11,13 @@ const ProjectBanner = ({ project }: Props) => {
     <div className="flex flex-col space-y-4 my-6 ">
       {/* LEFT SIDE */}
       <div className="flex  items-center space-x-2">
-        <Badge>{project.code}</Badge>
+        <Badge>{project?.code}</Badge>
         <h2 className="text-xl font-extrabold leading-tight  lg:text-2xl">
-          {project.title}
+          {project?.title}
         </h2>
       </div>
       <div className="flex  items-center space-x-2">
-        {project.tags.map((tag, i) => (
+        {project?.tags.map((tag, i) => (
           <Badge variant="destructive" key={i}>
             {tag}{" "}
           </Badge>

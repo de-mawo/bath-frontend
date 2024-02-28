@@ -1,29 +1,26 @@
-import Container from '@/components/Common/Container'
-import { User } from '@prisma/client'
-
-
+import Container from "@/components/Common/Container";
 
 type Props = {
-  name: string
-}
+  name: string;
+};
 
-const WelcomeBanner = ({name}: Props) => {
+const WelcomeBanner = ({ name }: Props) => {
   return (
     <Container>
-       <div className="flex flex-wrap justify-between items-center my-6 ">
-            {/* LEFT SIDE */}
-            <div className="flex justify-start items-center"> 
-            <h2 className='text-xl font-extrabold leading-tight  lg:text-2xl'>Welcome {name}!</h2>
-              </div>
+      <div className="flex flex-wrap justify-between items-center my-6 ">
+        {/* LEFT SIDE */}
+        <div className="flex justify-start items-center">
+          <h2 className="text-xl font-extrabold leading-tight  lg:text-2xl">
+            Welcome {name}!
+          </h2>
+        </div>
 
-            {/* RIGHT SIDE  */}
+        {/* RIGHT SIDE  */}
 
-            <div className="flex items-center space-x-3 md:space-x-6">
-         
-            </div>
-          </div>
+        <div className="flex items-center space-x-3 md:space-x-6"></div>
+      </div>
     </Container>
-  )
-}
+  );
+};
 
-export default WelcomeBanner
+export default WelcomeBanner;

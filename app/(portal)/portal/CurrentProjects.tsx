@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Project } from "@prisma/client";
+import { Project } from "@/types";
 import dayjs from "dayjs";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ const CurrentProjects = ({ projects }: Props) => {
         </h3>
       </div>
       <hr />
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <div className="flex flex-col p-3" key={project.id}>
           <div className="flex items-center space-x-2">
             <Badge variant="outline">{project.code}</Badge>{" "}

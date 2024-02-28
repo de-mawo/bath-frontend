@@ -2,19 +2,13 @@ import Container from "@/components/Common/Container";
 import CustomCalendar from "./CustomCalendar";
 import { getUserInfo } from "@/lib/data/getUsers";
 import { getUserEventsData } from "@/lib/data/getEvents";
-import { User } from "@prisma/client";
+import { Events } from "@/types";
+
 
 const CalendarPage = async () => {
-  const user = await getUserInfo();
-   // Check if user is null before destructure
-   if (!user) {
-    // Handle the case where user is null, for example, redirect to login page or display an error message
-    return <div>User info not available</div>;
-  }
+ 
 
-  const { course } = user as User;
-
-  const events = await getUserEventsData(course as string);
+  const events = await getUserEventsData();
 
   return (
     <>
@@ -32,7 +26,7 @@ const CalendarPage = async () => {
           <div className="flex items-center space-x-3 md:space-x-6"></div>
         </div>
       </Container>
-      <CustomCalendar events={events} />
+      <CustomCalendar events={events as Events[]} />
     </>
   );
 };

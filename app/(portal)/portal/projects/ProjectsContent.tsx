@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { Project } from "@prisma/client";
+import { Project } from "@/types";
 import dayjs from "dayjs";
 import Link from "next/link";
 

@@ -3,9 +3,9 @@ import ContentWrapper from "@/components/Common/ContentWrapper";
 import { ReviewSelector } from "./ReviewSelector";
 import { getProjectTaskData } from "@/lib/data/getTasks";
 import { getOneProjectMarksData } from "@/lib/data/getMarks";
-import { ProjectMarks, User } from "@prisma/client";
 import { getUserInfo } from "@/lib/data/getUsers";
 import { redirect } from "next/navigation";
+import { Marks, Task, User } from "@/types";
 
 export default async function SingleProjectPage({
   params,
@@ -22,7 +22,10 @@ export default async function SingleProjectPage({
   const projectId = searchParams.proId as string;
   const courseCode = searchParams.course as string;
   const tasks = await getProjectTaskData(projectId);
-  const projectmarks = await getOneProjectMarksData({ projectId, userId }); 
+  const projectmarks = await getOneProjectMarksData(projectId); 
+
+  console.log('ProMarks',projectmarks);
+  
 
   if (userId === LoggedInUserId) {
     redirect(`/portal`);
@@ -37,8 +40,8 @@ export default async function SingleProjectPage({
       </div>
       <ContentWrapper>
         <ReviewSelector
-          tasks={tasks}
-          projectmarks={projectmarks as ProjectMarks}
+          tasks={tasks as Task[]}
+          projectmarks={projectmarks as Marks}
           courseCode={courseCode}
           userId={userId}
           projectId={projectId}

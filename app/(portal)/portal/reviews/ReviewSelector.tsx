@@ -3,15 +3,15 @@
 import * as React from "react";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { ProjectMarks, Task } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import { Marks, Task } from "@/types";
 
 type Props = {
   tasks: Task[];
-  projectmarks: ProjectMarks;
+  projectmarks: Marks;
   courseCode: string;
   userId: string;
   projectId: string;
@@ -31,6 +31,8 @@ export function ReviewSelector({
   const router = useRouter();
 
   const projectmarksId = projectmarks?.id;
+
+
 
   // Initialize state for each task
   const [taskValues, setTaskValues] = React.useState<TaskValues>(() =>
@@ -62,12 +64,20 @@ export function ReviewSelector({
       userId,
       projectId,
     };
+    
 
     try {
-      const res = await fetch("/api/pmarks/review", {
-        method: "PATCH",
-        body: JSON.stringify(formattedValues),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/marks`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(formattedValues),
+          credentials: "include", // to send cookies to the server
+          headers: {
+            "Content-Type": "application/json", // Specify content type
+          },
+        }
+      );
 
       if (res.ok) {
         toast.success("Review Submitted", { duration: 4000 });
@@ -77,7 +87,7 @@ export function ReviewSelector({
         toast.error(`An error occurred: ${errorMessage}`, { duration: 6000 });
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      console.log("An error occurred:", error);
       toast.error("An unexpected error occurred");
     }
   }

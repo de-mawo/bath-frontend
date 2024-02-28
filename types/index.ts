@@ -115,3 +115,13 @@ export type Events = {
     createdAt: Date;
     updatedAt: Date;
 }
+
+
+export type Marks = {
+  id: string;
+    averageMarks: number;
+    moduleTitle: string;
+    moduleId: string;
+    isCompleted: boolean;
+    userId: string;
+}

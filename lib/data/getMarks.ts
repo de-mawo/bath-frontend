@@ -1,11 +1,10 @@
-import { Events } from "@/types";
+import {  Marks } from "@/types";
 import { cookies } from "next/headers";
 
-
-export async function getAllEventsData() {
+export async function getUserModuleMarksData() {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/event`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/marks`,
       {
         method: "GET",
         credentials: "include",
@@ -17,9 +16,9 @@ export async function getAllEventsData() {
       return [];
     }
 
-    const events: Events[] = await res.json();
+    const marks: Marks[] = await res.json();
 
-    return [...events];
+    return [...marks];
   } catch (error) {
     console.error("Error fetching projects:", error);
     console.log(error);
@@ -28,10 +27,11 @@ export async function getAllEventsData() {
   }
 }
 
-export async function getUserEventsData() {
+
+export async function getOneProjectMarksData(projectId: string) {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/event/myEvent`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/marks/${projectId}`,
       {
         method: "GET",
         credentials: "include",
@@ -40,12 +40,12 @@ export async function getUserEventsData() {
     );
 
     if (!res.ok) {
-      return [];
+      return {};
     }
 
-    const events: Events[] = await res.json();
+    const marks: Marks = await res.json();
 
-    return [...events];
+    return marks;
   } catch (error) {
     console.error("Error fetching projects:", error);
     console.log(error);

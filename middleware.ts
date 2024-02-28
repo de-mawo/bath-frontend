@@ -5,7 +5,6 @@ import { UserSession } from "./types";
 export async function middleware(req: NextRequest) {
   const session: UserSession = await getCurrentUser();
 
-  console.log(session);
   
   try {
     if (req.nextUrl.pathname === "/" && session) {

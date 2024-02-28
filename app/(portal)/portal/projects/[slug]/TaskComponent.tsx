@@ -1,6 +1,6 @@
 "use client";
 
-import { Task } from "@prisma/client";
+
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import python from 'highlight.js/lib/languages/python';
@@ -10,6 +10,7 @@ import sql from 'highlight.js/lib/languages/sql';
 import xml from 'highlight.js/lib/languages/xml';
 import "highlight.js/styles/atom-one-dark.css";
 import { useEffect } from "react";
+import { Task } from '@/types';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('typescript', typescript);

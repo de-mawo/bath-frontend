@@ -1,10 +1,9 @@
 import { BsCalendar2Event } from "react-icons/bs";
 import { TbTimelineEventMinus } from "react-icons/tb";
-import { IoMdTime } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import Link from "next/link";
-import { Events } from "@prisma/client";
 import dayjs from "dayjs";
+import { Events } from "@/types";
 
 type Props = {
   events: Events[]
@@ -28,7 +27,7 @@ const UpcomingEvents = ({events}: Props) => {
       </div>
       <hr />
       {
-        events.map((event) => (
+        events?.map((event) => (
           <div className="flex items-center mt-2" key={event.id}>
           <div className="w-16 h-16 flex flex-col items-center m-3 font-semibold rounded-md border">
             <div className="bg-rose-500 w-full text-center rounded-md text-white">

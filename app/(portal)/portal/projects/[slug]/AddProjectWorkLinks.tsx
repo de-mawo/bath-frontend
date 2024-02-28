@@ -6,38 +6,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
-  FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
 import toast from "react-hot-toast";
 import * as z from "zod";
-import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import DialogWrapper from "@/components/Common/DialogWrapper";
-import { BsCheckLg } from "react-icons/bs";
-import { PiCaretUpDownBold } from "react-icons/pi";
-import { FormEvent, useState } from "react";
+import {  useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Project } from "@prisma/client";
+import { Project } from "@/types";
+
 
 type Props = {
   project: Project;
@@ -81,9 +63,13 @@ const AddProjectWorkLinks = ({ project, userId }: Props) => {
         projectTitle,
       };
 
-      const res = await fetch("/api/pmarks", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/marks`, {
         method: "POST",
         body: JSON.stringify(formattedValues),
+        credentials: "include", // to send cookies to the server
+        headers: {
+          "Content-Type": "application/json" // Specify content type
+        }
       });
 
       if (res.ok) {

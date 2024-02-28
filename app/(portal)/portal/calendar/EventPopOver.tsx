@@ -6,7 +6,8 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Events } from "@prisma/client";
+import { Events } from "@/types";
+
 
 type Props = {
   event: Events;

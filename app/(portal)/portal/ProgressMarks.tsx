@@ -1,8 +1,9 @@
-import { ModuleMarks } from "@prisma/client";
+
+import { Marks } from "@/types";
 import { TbTallymarks } from "react-icons/tb";
 
 type Props = {
-  moduleMarks: ModuleMarks[];
+  moduleMarks: Marks[];
 };
 
 const ProgressMarks = ({ moduleMarks }: Props) => {
