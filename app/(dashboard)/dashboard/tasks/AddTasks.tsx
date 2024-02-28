@@ -105,10 +105,17 @@ const AddTasks = () => {
         requirements: reqs,
       };
 
-      const res = await fetch("/api/task", {
-        method: "POST",
-        body: JSON.stringify(formattedValues),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/task`,
+        {
+          method: "POST",
+          body: JSON.stringify(formattedValues),
+          credentials: "include", // to send cookies to the server
+          headers: {
+            "Content-Type": "application/json", // Specify content type
+          },
+        }
+      );
 
       if (res.ok) {
         toast.success("Task Added", { duration: 4000 });

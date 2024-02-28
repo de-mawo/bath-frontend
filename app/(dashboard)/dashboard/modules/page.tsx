@@ -1,8 +1,8 @@
 import Container from "@/components/Common/Container";
-import { Module } from "@prisma/client";
 import AddModule from "./AddModule";
 import AdminModulesTable from "./AdminModulesTable";
 import { getModulesData } from "@/lib/data/getModules";
+import { Modules } from "@/types";
 
 
 
@@ -26,7 +26,7 @@ const ModulesPage = async () => {
               <AddModule />
             </div>
           </div>
-          <AdminModulesTable modules={modules as Module[]} />
+          <AdminModulesTable modules={modules as Modules[]} />
         </Container>
       </>
     );

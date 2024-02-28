@@ -35,8 +35,9 @@ import { useRouter } from "next/navigation";
 import DialogWrapper from "@/components/Common/DialogWrapper";
 import { BsCheckLg } from "react-icons/bs";
 import { PiCaretUpDownBold } from "react-icons/pi";
-import { User } from "@prisma/client";
+
 import { CiEdit } from "react-icons/ci";
+import { User } from "@/types";
 
 type EditUserProps = {
   user: User;
@@ -55,7 +56,7 @@ const AdminEditUser = ({ user }: EditUserProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      role: user.role,
+      role: user.role ,
       course: user.course as string,
     },
   });
@@ -67,13 +68,19 @@ const AdminEditUser = ({ user }: EditUserProps) => {
         id,
       };
 
-      const res = await fetch("/api/user/admin", {
-        method: "PATCH",
-        body: JSON.stringify(formattedValues),
-      });
-
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/user/admin`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(formattedValues),
+          credentials: "include", // to send cookies to the server
+          headers: {
+            "Content-Type": "application/json", // Specify content type
+          },
+        }
+      );
       if (res.ok) {
-        toast.success("User added to Course ", { duration: 4000 });
+        toast.success("User  Edited ", { duration: 4000 });
         form.reset();
         router.refresh();
       } else {

@@ -9,7 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Project } from "@prisma/client";
+import { Project } from "@/types";
+
 
 type Props = {
     projects: Project[];

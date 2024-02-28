@@ -1,9 +1,8 @@
 import Container from '@/components/Common/Container';
-import {  Task } from '@prisma/client';
-import React from 'react'
 import AdminTasksTable from './AdminTasksTable';
 import AddTasks from './AddTasks';
 import { getTasksData } from '@/lib/data/getTasks';
+import { Task } from '@/types';
 
 const AdminTasksPage = async () => {
     const tasks = await getTasksData();

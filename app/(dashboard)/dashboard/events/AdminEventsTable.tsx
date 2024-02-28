@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Events } from "@prisma/client";
+import { Events } from "@/types";
 import dayjs from "dayjs";
 import { FaRegTrashCan } from "react-icons/fa6";
 

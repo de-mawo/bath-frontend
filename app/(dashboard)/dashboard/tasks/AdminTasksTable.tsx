@@ -1,6 +1,4 @@
-import { CopyToClipBoard } from "@/components/Common/CopyToClipBoard";
 import TableWrapper from "@/components/Common/TableWarapper";
-import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -9,7 +7,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Task } from "@prisma/client";
+import { Task } from "@/types";
+
 
 type Props = {
   tasks: Task[];

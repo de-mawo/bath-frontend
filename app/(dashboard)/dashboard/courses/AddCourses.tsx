@@ -95,11 +95,13 @@ const AddCourses = () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/course`, {
         method: "POST",
         body: JSON.stringify(formattedValues),
-        credentials: "include",
+        credentials: "include", // to send cookies to the server
+        headers: {
+          "Content-Type": "application/json" // Specify content type
+        }
       });
 
-      console.log(formattedValues);
-      
+     
 
       if (res.ok) {
         toast.success("Course Added", { duration: 4000 });

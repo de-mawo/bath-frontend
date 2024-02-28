@@ -1,4 +1,3 @@
-
 import { cookies } from "next/headers";
 
 export async function getCurrentUser() {
@@ -10,14 +9,11 @@ export async function getCurrentUser() {
     });
 
     if (!res.ok) {
-      return null
+      return null;
     }
 
-   
-    
     const session = await res.json();
-   
-    
+
     return session;
   } catch (error) {
     console.error("Error fetching user:", error);
@@ -26,3 +22,4 @@ export async function getCurrentUser() {
     return error;
   }
 }
+

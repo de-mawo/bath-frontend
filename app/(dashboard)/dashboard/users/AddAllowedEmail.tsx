@@ -43,10 +43,17 @@ const AddAllowedEmail = () => {
         ...values,
       };
 
-      const res = await fetch("/api/emails", {
-        method: "PATCH",
-        body: JSON.stringify(formattedValues),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/user/allowed`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(formattedValues),
+          credentials: "include", // to send cookies to the server
+          headers: {
+            "Content-Type": "application/json", // Specify content type
+          },
+        }
+      );
 
       if (res.ok) {
         toast.success("Email Added", { duration: 4000 });

@@ -5,11 +5,14 @@ import AdminCoursesTable from "./AdminCoursesTable";
 
 
 import AddStudentToCourse from "./AddStudentToCourse";
-import { getCourses } from "@/lib/data/getCourses";
+import { getCoursesData } from "@/lib/data/getCourses";
 import { Course } from "@/types";
 
 const CoursesPage = async () => {
-  const courses = await getCourses();
+  const courses = await getCoursesData();
+
+ 
+  
   return (
     <>
       <Container>

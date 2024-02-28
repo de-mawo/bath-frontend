@@ -93,11 +93,15 @@ const AddEvents = () => {
         startDate: values.startDate.toISOString(),
       };
 
-      const res = await fetch("/api/event", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/event`, {
         method: "POST",
         body: JSON.stringify(formattedValues),
+        credentials: "include", // to send cookies to the server
+        headers: {
+          "Content-Type": "application/json" // Specify content type
+        }
       });
-
+ 
       if (res.ok) {
         toast.success("Event Added", { duration: 4000 });
         form.reset();

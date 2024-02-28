@@ -19,7 +19,6 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
-import { format } from "date-fns";
 
 import {
   Popover,
@@ -66,10 +65,10 @@ const AddModule = () => {
         required_error: "Please add a Title.",
       })
       .max(500),
-      
-      courseCode: z.string({
-        required_error: "Please add a Course code.",
-      }),
+
+    courseCode: z.string({
+      required_error: "Please add a Course code.",
+    }),
 
     code: z.string({
       required_error: "Please add a module code.",
@@ -90,7 +89,7 @@ const AddModule = () => {
       category: "",
       code: "",
       courseCode: "",
-      courseId: ""
+      courseId: "",
     },
   });
 
@@ -101,10 +100,17 @@ const AddModule = () => {
         tags,
       };
 
-      const res = await fetch("/api/module", {
-        method: "POST",
-        body: JSON.stringify(formattedValues),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/module`,
+        {
+          method: "POST",
+          body: JSON.stringify(formattedValues),
+          credentials: "include", // to send cookies to the server
+          headers: {
+            "Content-Type": "application/json", // Specify content type
+          },
+        }
+      );
 
       if (res.ok) {
         toast.success("Module Added", { duration: 4000 });
@@ -145,7 +151,7 @@ const AddModule = () => {
               )}
             />
 
-<FormField
+            <FormField
               control={form.control}
               name="courseCode"
               render={({ field }) => (

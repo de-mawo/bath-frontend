@@ -140,10 +140,17 @@ const AddProjects = () => {
         objectives,
       };
 
-      const res = await fetch("/api/project", {
-        method: "POST",
-        body: JSON.stringify(formattedValues),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/project`,
+        {
+          method: "POST",
+          body: JSON.stringify(formattedValues),
+          credentials: "include", // to send cookies to the server
+          headers: {
+            "Content-Type": "application/json", // Specify content type
+          },
+        }
+      );
 
       if (res.ok) {
         toast.success("Project Added", { duration: 4000 });

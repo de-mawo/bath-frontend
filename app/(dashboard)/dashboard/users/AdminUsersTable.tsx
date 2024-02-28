@@ -10,8 +10,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { User } from "@prisma/client";
+
 import AdminEditUser from "./AdminEditUser";
+import { User } from "@/types";
 
 type Props = {
   users: User[];

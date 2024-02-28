@@ -1,9 +1,9 @@
 import Container from '@/components/Common/Container';
-import { Project } from '@prisma/client';
 import React from 'react'
 import AdminProjectsTable from './AdminProjectsTable';
 import AddProjects from './AddProjects';
 import { getProjectsData } from '@/lib/data/getProjects';
+import { Project } from '@/types';
 
 const AdminProjectsPage = async () => {
     const projects = await getProjectsData();

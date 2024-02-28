@@ -19,6 +19,9 @@ type Props = {
 };
 
 const AdminCoursesTable = ({ courses }: Props) => {
+
+
+  
   return (
     <TableWrapper title="All Courses">
       <div className="relative overflow-x-auto  ">

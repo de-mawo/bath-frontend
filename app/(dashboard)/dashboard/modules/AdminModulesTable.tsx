@@ -9,10 +9,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Module } from "@prisma/client";
+import { Modules } from "@/types";
+
 
 type Props = {
-    modules: Module[];
+    modules: Modules[];
   };
 
 const AdminModulesTable = ({ modules }: Props) => {
